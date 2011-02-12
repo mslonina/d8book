@@ -1,0 +1,4 @@
+Short TODO list
+---------------
+
+- When addding child page, put the parent book automatically in the Book outline tab.
