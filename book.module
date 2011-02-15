@@ -111,16 +111,29 @@ function book_menu_local_tasks_alter(&$data, $router_item, $root_path) {
   if ($root_path == 'node/%/reorder') {
     $node = node_load(arg(1));
     $child_link = _book_add_child_link($node);
+    $child_node_type = $child_link['book_add_child']['href'];
+    $parent = $child_link['book_add_child']['query']['parent'];
+
     $item = menu_get_item($child_link['book_add_child']['href']);
-      //. '&parent=' .  $child_link['book_add_child']['query']['parent']);
     $item['title'] = $child_link['book_add_child']['title'];
-    //debug($item);
+    $item['href'] = $child_node_type;
+
+    // This will pass our parent link
+    $item['localized_options'] = array(
+      'title' => $item['title'],
+      'href' => $item['href'],
+      'query' => array(
+        'parent' => $parent,
+      ),
+    );
+
     if ($item['access']) {
       $data['actions']['output'][] = array(
         '#theme' => 'menu_local_action',
         '#link' => $item,
       );
     }
+    
   }
 }
 
@@ -237,6 +250,16 @@ function book_menu() {
     'weight' => 2,
     'file' => 'book.admin.inc',
   );
+  /*$items['node/%node/reorder/child'] = array(
+    'title' => 'Add child page',
+    'description' => 'Add child pages',
+    'page callback' => '_book_add_child',
+    'page arguments' => array(1),
+    'access callback' => '_book_outline_access',
+    'access arguments' => array(1),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 10,
+  );*/
   $items['node/%node/outline/remove'] = array(
     'title' => 'Remove from outline',
     'page callback' => 'drupal_get_form',
@@ -968,6 +991,8 @@ function book_node_delete($node) {
  */
 function book_node_prepare($node) {
   global $user;
+  debug($_GET);
+  debug($node);
   $access = _book_user_access($node, $user);
   // Prepare defaults for the add/edit form.
   if (empty($node->book) && $access) {
