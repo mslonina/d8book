@@ -133,7 +133,6 @@ function book_menu_local_tasks_alter(&$data, $router_item, $root_path) {
         '#link' => $item,
       );
     }
-    
   }
 }
 
@@ -250,16 +249,6 @@ function book_menu() {
     'weight' => 2,
     'file' => 'book.admin.inc',
   );
-  /*$items['node/%node/reorder/child'] = array(
-    'title' => 'Add child page',
-    'description' => 'Add child pages',
-    'page callback' => '_book_add_child',
-    'page arguments' => array(1),
-    'access callback' => '_book_outline_access',
-    'access arguments' => array(1),
-    'type' => MENU_LOCAL_TASK,
-    'weight' => 10,
-  );*/
   $items['node/%node/outline/remove'] = array(
     'title' => 'Remove from outline',
     'page callback' => 'drupal_get_form',
@@ -991,8 +980,6 @@ function book_node_delete($node) {
  */
 function book_node_prepare($node) {
   global $user;
-  debug($_GET);
-  debug($node);
   $access = _book_user_access($node, $user);
   // Prepare defaults for the add/edit form.
   if (empty($node->book) && $access) {

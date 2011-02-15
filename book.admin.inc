@@ -75,17 +75,20 @@ function book_admin_edit($form, $form_state, $node) {
   drupal_set_title($node->title);
   $form['#node'] = $node;
   if (!empty($node->book)) {
-    _book_admin_table($node, $form);
-    $form['save'] = array(
-      '#type' => 'submit',
-      '#value' => t('Save book pages'),
-    );
-  }
-  else {
-    $form['reorder'] = array(
-      '#type' => 'item',
-      '#title' => t('No child pages.'),
-    );
+    $toc = menu_tree_all_data(book_menu_name($node->nid));
+    if (!empty($toc)) {
+      _book_admin_table($node, $form);
+      $form['save'] = array(
+        '#type' => 'submit',
+        '#value' => t('Save book pages'),
+      );
+    }
+    else {
+      $form['reorder'] = array(
+        '#type' => 'item',
+        '#title' => t('No child pages.'),
+      );
+    }
   }
 
   return $form;
