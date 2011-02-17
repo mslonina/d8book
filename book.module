@@ -148,8 +148,8 @@ function _book_add_child_link($node) {
       'href' => 'node/add/' . str_replace('_', '-', $child_type),
       'query' => array('parent' => $node->book['mlid']),
     );
+    return $link;  
   }
-  return $link;  
 }
 
 /**
