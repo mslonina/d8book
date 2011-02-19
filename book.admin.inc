@@ -90,6 +90,12 @@ function book_admin_edit($form, $form_state, $node) {
       );
     }
   }
+  else {
+    $form['no_outline'] = array(
+      '#type' => 'item',
+      '#description' => t('No book outline. Create book outline first.'),
+    );
+  }
 
   return $form;
 }
