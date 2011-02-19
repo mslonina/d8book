@@ -75,8 +75,7 @@ function book_admin_edit($form, $form_state, $node) {
   drupal_set_title($node->title);
   $form['#node'] = $node;
   if (!empty($node->book)) {
-    $toc = menu_tree_all_data(book_menu_name($node->nid));
-    if (!empty($toc)) {
+    if ($node->book['has_children']) {
       _book_admin_table($node, $form);
       $form['save'] = array(
         '#type' => 'submit',
