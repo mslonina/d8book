@@ -86,7 +86,7 @@ function book_admin_edit($form, $form_state, $node) {
     else {
       $form['reorder'] = array(
         '#type' => 'item',
-        '#title' => t('No child pages.'),
+        '#description' => t('No child pages.'),
       );
     }
   }

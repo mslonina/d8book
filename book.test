@@ -23,7 +23,7 @@ class BookTestCase extends DrupalWebTestCase {
     parent::setUp('book');
 
     // Create users.
-    $this->book_author = $this->drupalCreateUser(array('create new books', 'create book content', 'edit own book content', 'add content to books'));
+    $this->book_author = $this->drupalCreateUser(array('create new books', 'create book content', 'edit own book content', 'add content to own books', 'administer own book outlines'));
     $this->web_user = $this->drupalCreateUser(array('access printer-friendly version'));
     $this->admin_user = $this->drupalCreateUser(array('create new books', 'create book content', 'edit own book content', 'add content to books', 'administer blocks'));
   }

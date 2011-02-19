@@ -141,6 +141,7 @@ function book_menu_local_tasks_alter(&$data, $router_item, $root_path) {
  */
 function _book_add_child_link($node) {
   global $user;
+  $link = array();
   $child_type = variable_get('book_child_type', 'book');
   if (_book_user_access($node, $user) && node_access('create', $child_type) && $node->status == 1 && $node->book['depth'] < MENU_MAX_DEPTH) {
     $link['book_add_child'] = array(
@@ -148,8 +149,8 @@ function _book_add_child_link($node) {
       'href' => 'node/add/' . str_replace('_', '-', $child_type),
       'query' => array('parent' => $node->book['mlid']),
     );
-    return $link;  
   }
+  return $link;  
 }
 
 /**
@@ -203,15 +204,6 @@ function book_menu() {
     'access arguments' => array('administer site configuration'),
     'type' => MENU_LOCAL_TASK,
     'weight' => 8,
-    'file' => 'book.admin.inc',
-  );
-  $items['admin/content/book/%node'] = array(
-    'title' => 'Re-order book pages and change titles',
-    'page callback' => 'drupal_get_form',
-    'page arguments' => array('book_admin_edit', 3),
-    'access callback' => '_book_outline_access',
-    'access arguments' => array(3),
-    'type' => MENU_CALLBACK,
     'file' => 'book.admin.inc',
   );
   $items['book'] = array(
