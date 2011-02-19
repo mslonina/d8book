@@ -16,7 +16,7 @@ function book_admin_overview() {
 
   // Add any recognized books to the table list.
   foreach (book_get_books() as $book) {
-    $rows[] = array(l($book['title'], $book['href'], $book['options']), l(t('edit order and titles'), 'admin/content/book/' . $book['nid']));
+    $rows[] = array(l($book['title'], $book['href'], $book['options']), l(t('edit order and titles'), 'node/' . $book['nid'] . '/reorder'));
   }
 
   return theme('table', array('header' => $headers, 'rows' => $rows, 'empty' => t('No books available.')));
