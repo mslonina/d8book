@@ -1,6 +1,4 @@
 <?php
-// $Id: book.test,v 1.28 2010/10/18 05:53:34 webchick Exp $
-
 class BookTestCase extends DrupalWebTestCase {
   protected $book;
   // $book_author is a user with permission to create and edit books.

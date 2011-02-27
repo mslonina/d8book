@@ -1,6 +1,4 @@
 <?php
-// $Id: book.install,v 1.36 2010/06/23 19:05:15 dries Exp $
-
 /**
  * @file
  * Install, update and uninstall functions for the book module.

@@ -1,6 +1,4 @@
 <?php
-// $Id: book.module,v 1.558 2011/01/03 07:34:46 webchick Exp $
-
 /**
  * @file
  * Allows users to create and organize related content in an outline.

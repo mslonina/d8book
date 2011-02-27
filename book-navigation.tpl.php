@@ -1,6 +1,4 @@
 <?php
-// $Id: book-navigation.tpl.php,v 1.3 2009/02/18 14:28:21 webchick Exp $
-
 /**
  * @file
  * Default theme implementation to navigate books. Presented under nodes that
